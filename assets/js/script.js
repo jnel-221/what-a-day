@@ -25,8 +25,17 @@ inptGrpAppend.append(saveBtn);
 inptGrp.append(inptGrpAppend);
 
 $('.container').append(inptGrp);
-    };
+
+saveBtn.on("click", function(event){
+    event.preventDefault();
+    var 
+});
 
 
 };
+
+
+
+ };
+
 createSchedule();
