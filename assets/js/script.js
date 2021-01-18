@@ -1,6 +1,6 @@
 var today = moment().format('LLL')
 var now = moment().format('h a');
-console.log(typeof now);
+console.log(now);
 
 var workHours = [6+" am",7+" am",8+" am",9+" am",10+" am",11+" am",12+" pm",1+" pm",2+" pm",3+" pm",4+" pm",5+" pm",6+" pm"]
 
@@ -24,24 +24,26 @@ for(var i = 0; i < workHours.length; i++){
 inptGrpAppend.append(saveBtn);
 inptGrp.append(inptGrpAppend);
 
-$('.container').append(inptGrp);
+ $('.container').append(inptGrp);
 
-saveBtn.on("click", function(event){
+  saveBtn.on("click", function(event){
     event.preventDefault();
-   
-var apptTime = $(this).parent().siblings('.input-group-prepend').siblings().attr("data-time");
-var appt = $(this).parent().siblings('.input-group-prepend').siblings().val();;
-    console.log(apptTime);
-    console.log(appt);
+    var apptTime = $(this).parent().siblings('.input-group-prepend').siblings().attr("data-time");
+    var appt = $(this).parent().siblings('.input-group-prepend').siblings().val();;
 
     localStorage.setItem(apptTime, appt);
-});
-
-
-};
-
+  });
 
 
  };
 
+};
+
+function retrieveAppts(){
+    for(var x = 0; x < workHours.length; x++)
+    localStorage.getItem(x);
+    console.log(x);
+}
+
+retrieveAppts();
 createSchedule();
