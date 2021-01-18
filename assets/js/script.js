@@ -11,11 +11,11 @@ $(document).ready(function(){
 });
 
 function createSchedule(){
-    for(var i = 0; i < workHours.length; i++){
+for(var i = 0; i < workHours.length; i++){
     var inptGrp = $('<div>').addClass('input-group time-block');
     var inptGrpPrend = $('<div>').addClass('input-group-prepend');
     var spanEL =$('<span>').addClass('input-group-text hour').text(workHours[i]);
-    var agendaItem = $('<input>').attr({'data-time': workHours[i], 'type': 'text'}).addClass('form-control description time-block');
+    var agendaItem = $('<input>').attr({'data-time': workHours[i], 'type': 'text'}).addClass('form-control description time-block event');
     var inptGrpAppend = $('<div>').addClass("input-group-append");
     var saveBtn = $('<button>').addClass('saveBtn').html('Save');
  inptGrp.append(inptGrpPrend);
@@ -28,7 +28,13 @@ $('.container').append(inptGrp);
 
 saveBtn.on("click", function(event){
     event.preventDefault();
-    var 
+   
+var apptTime = $(this).parent().siblings('.input-group-prepend').siblings().attr("data-time");
+var appt = $(this).parent().siblings('.input-group-prepend').siblings().val();;
+    console.log(apptTime);
+    console.log(appt);
+
+    localStorage.setItem(apptTime, appt);
 });
 
 
