@@ -4,7 +4,7 @@ body {
   line-height: 1;
 }
 
-textarea {
+input {
   background: transparent;
   border: none;
   resize: none;
@@ -21,7 +21,7 @@ textarea {
   border-bottom: 10px solid black;
 }
 
-.form-group {
+.container {
   margin-top: 25px;
 }
 .description {
@@ -66,6 +66,7 @@ textarea {
   border-bottom-right-radius: 15px;
   background-color: #06aed5;
   color: white;
+  height: 38px;
 }
 
 .saveBtn i:hover {

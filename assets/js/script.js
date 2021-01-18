@@ -1,18 +1,21 @@
-var now = moment().format('LLL')
+var today = moment().format('LLL')
+var now = moment().format('h a');
 console.log(now);
 
+var workHours = [6,7,8,9,10,11,12,1,2,3,4,5,6]
+
+
 $(document).ready(function(){
-    $('#currentDay').text(now);
+    $('#currentDay').text(today);
     
 });
 
 function createSchedule(){
-    var formGrp = $('<div>').addClass('form-group description');
-    var inptGrp = $('<div>').addClass('input-group mb-3 time-block');
+    for(var i = 0; i < workHours.length; i++){
+    var inptGrp = $('<div>').addClass('input-group time-block');
     var inptGrpPrend = $('<div>').addClass('input-group-prepend');
     var spanEL =$('<span>').addClass('input-group-text hour').text("hello world");
-    // var agendaLbl =$('<div>').addClass('hour form-row').text("hello world");
-    var agendaItem = $('<textarea>').attr("data-time", 0).addClass('form-control description time-block');
+    var agendaItem = $('<input>').attr({'data-time': 0, 'type': 'text'}).addClass('form-control description time-block');
     var inptGrpAppend = $('<div>').addClass("input-group-append");
     var saveBtn = $('<button>').addClass('saveBtn').html('Save');
  inptGrp.append(inptGrpPrend);
@@ -20,11 +23,10 @@ function createSchedule(){
  inptGrp.append(agendaItem);
 inptGrpAppend.append(saveBtn);
 inptGrp.append(inptGrpAppend);
-formGrp.append(inptGrp);
-$('.container').append(formGrp);
+
+$('.container').append(inptGrp);
+    };
 
 
-    // $('.container').append(agendaLbl).append(agendaItem).append(saveBtn);
-    // $('.container').append(agendaLbl).append(agendaItem).append(saveBtn);
 };
 createSchedule();
