@@ -1,49 +1,88 @@
+//moment.js variables: attaching time, setting up color-assignment functionality
 var today = moment().format('LLL')
-var now = moment().format('h a');
+var now = parseInt(moment().format('H'));
 console.log(now);
+var currentDate =  $('#currentDay');
+
+
+// Global DOM elements for creating schedule:
+var inptGrpEl = $('<div class="input-group time-block">');
+var inptGrpPrend = $('<div class="input-group-prepend">');
+var spanEl =$('<span class="input-group-text hour">'); 
+var inptEl = $('<input class="form-control description time-block event" type="text">'); 
+var inptGrpAppend = $('<div class="input-group-append">');
+var saveBtnEl = $('<button class="saveBtn">').html('Save');
+
 
 var workHours = [6+" am",7+" am",8+" am",9+" am",10+" am",11+" am",12+" pm",1+" pm",2+" pm",3+" pm",4+" pm",5+" pm",6+" pm"]
+var dataHours = [6,7,8,9,10,11,12,13,14,15,16,17,18]
 
-
+//document on ready 
 $(document).ready(function(){
-    $('#currentDay').text(today);
-    
+   currentDate.text(today);
+  
+
+
+
+
 });
 
-function createSchedule(){
-for(var i = 0; i < workHours.length; i++){
-    var inptGrp = $('<div>').addClass('input-group time-block');
-    var inptGrpPrend = $('<div>').addClass('input-group-prepend');
-    var spanEL =$('<span>').addClass('input-group-text hour').text(workHours[i]);
-    var agendaItem = $('<input>').attr({'data-time': workHours[i], 'type': 'text'}).addClass('form-control description time-block event');
-    var inptGrpAppend = $('<div>').addClass("input-group-append");
-    var saveBtn = $('<button>').addClass('saveBtn').html('Save');
- inptGrp.append(inptGrpPrend);
- inptGrpPrend.html(spanEL);
- inptGrp.append(agendaItem);
-inptGrpAppend.append(saveBtn);
-inptGrp.append(inptGrpAppend);
 
- $('.container').append(inptGrp);
+function createSchedule(arr){
 
-  saveBtn.on("click", function(event){
-    event.preventDefault();
-    var apptTime = $(this).parent().siblings('.input-group-prepend').siblings().attr("data-time");
-    var appt = $(this).parent().siblings('.input-group-prepend').siblings().val();;
+ for(var i = 0; i < arr.length; i++){
+    var inptGrpEl = $('<div class="input-group time-block">');
+    var inptGrpPrend = $('<div class="input-group-prepend">');
+    var spanEl =$('<span class="input-group-text hour">'); 
+    var inptEl = $('<input class="form-control description time-block event" type="text">'); 
+    var inptGrpAppend = $('<div class="input-group-append">');
+    var saveBtnEl = $('<button class="saveBtn">').html('Save');
 
-    localStorage.setItem(apptTime, appt);
-  });
+    var label = spanEl.text(workHours[i]);
+    var inptAttr = inptEl.attr('data-time', dataHours[i]);
 
-
+    var dataInt = parseInt(inptAttr.attr('data-time'));
+   
+     inptGrpPrend.append(label);
+     inptGrpAppend.append(saveBtnEl);
+     inptGrpEl.append(inptGrpPrend, inptAttr, inptGrpAppend);
+ 
+  $('.container').append(inptGrpEl);
+ 
+   saveBtnEl.on("click", function(event){
+     event.preventDefault();
+     var apptTime = $(this).parent().siblings('.input-group-prepend').siblings().attr("data-time");
+     var appt = $(this).parent().siblings('.input-group-prepend').siblings().val();
+ 
+     localStorage.setItem(apptTime, appt);
+   });
+   
+  
+   assignColor(dataInt, inptAttr);
+  };
+  
  };
 
+
+function assignColor (dataInt, inptAttr) {
+    console.log(dataInt);
+if (dataInt < now){
+    inptAttr.addClass('past')
+}else if(dataInt > now){
+    inptAttr.addClass('future')
+} else if(dataInt === now){
+    inptAttr.addClass('present')
+}
 };
 
-function retrieveAppts(){
-    for(var x = 0; x < workHours.length; x++)
-    localStorage.getItem(x);
-    console.log(x);
-}
+// function retrieveAppts(){
+//   for (var a = 6; a <= 18; a++){
+//   $(a).val(localStorage.getItem(a));  
 
-retrieveAppts();
-createSchedule();
+// }
+// };
+// retrieveAppts();
+createSchedule(workHours,dataHours);
+
+
+
