@@ -24,7 +24,7 @@ function createSchedule(arr){
     var spanEl =$('<span class="input-group-text hour">'); 
     var inptEl = $('<input class="form-control description time-block event row" type="text">'); 
     var inptGrpAppend = $('<div class="input-group-append">');
-    var saveBtnEl = $('<button class="saveBtn">').html('Save');
+    var saveBtnEl = $('<button class="saveBtn">').html('<i class="far fa-save"></i>');
 
     var label = spanEl.text(workHours[i]);
     var inptAttr = inptEl.attr({'id': dataHours[i],'data-time': dataHours[i]});
