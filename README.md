@@ -20,11 +20,11 @@ Users are presented with a simple, clean design that displays well on mobile dev
 ![First View of Schedule](./assets/images/firstview.png)
 
 Events entered into the schedule persist after refreshing the browser, or closing and re-opening application.
-![Scheduled Events](./assets/images/workday/png)
+![Scheduled Events](./assets/images/workday.png)
 
 View of application on i-phone 7/8/9
 
-![Mobile View](./assets/images/iphone7+8+9)
+![Mobile View](./assets/images/iphone7+8+9.png)
 
 ## Link to Workday Scheduler
 
